@@ -5,9 +5,13 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.persistence.Id;
+
 @Document(collection = "tipos_habitacion")
 public class TipoHabitacion {
     
+    @Id
+    private ObjectId _id;
     private String nombre_tipo;
     private int capacidad;
     private boolean jacuzzi;

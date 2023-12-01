@@ -3,13 +3,18 @@ package uniandes.edu.co.proyecto.model;
 import java.util.Date;
 
 import java.util.List;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import jakarta.persistence.Id;
 import uniandes.edu.co.proyecto.model.enumeraciones.EstadoReserva;
 
 @Document(collection = "reservas_alojamiento")
 public class ReservaAlojamiento {
  
+    @Id
+    private ObjectId _id;
     private Date fecha_entrada;
     private Date fecha_salida;
     private String cedula_cliente;

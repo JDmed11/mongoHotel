@@ -1,10 +1,15 @@
 package uniandes.edu.co.proyecto.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.persistence.Id;
 
 @Document(collection = "servicios_hotel")
 public class ServicioHotel {
     
+    @Id
+    private ObjectId _id;
     private String nombre_servicio;
 
     public ServicioHotel(String nombre_servicio) {

@@ -1,5 +1,6 @@
 package uniandes.edu.co.proyecto.model;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 import jakarta.persistence.Id;
 
@@ -7,6 +8,7 @@ import jakarta.persistence.Id;
 public class Habitacion {
     
     @Id
+    private ObjectId _id;
     private int numero_habitacion;
 
     public Habitacion(int numero_habitacion) {

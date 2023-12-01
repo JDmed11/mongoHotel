@@ -3,9 +3,8 @@ package uniandes.edu.co.proyecto.repository;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import uniandes.edu.co.proyecto.model.Habitacion;
+import uniandes.edu.co.proyecto.model.ConsumoServicio;
 
-public interface HabitacionRepository extends MongoRepository<Habitacion, ObjectId>{
-    
+public interface ConsumoServicioRepository extends MongoRepository<ConsumoServicio, ObjectId>{
     
 }

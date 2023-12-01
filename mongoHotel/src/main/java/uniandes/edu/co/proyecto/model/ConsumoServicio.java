@@ -2,11 +2,16 @@ package uniandes.edu.co.proyecto.model;
 
 import java.util.Date;
 
+import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import jakarta.persistence.Id;
 
 @Document(collection = "consumos_servicio")
 public class ConsumoServicio {
     
+    @Id
+    private ObjectId _id;
     private Date fecha_inicio;
     private Date fecha_fin;
     private String nombre_servicio;
