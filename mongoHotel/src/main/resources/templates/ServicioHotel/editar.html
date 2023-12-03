@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario para editar un Servicio de Hotel</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario para editar un Servicio de Hotel</h1>
+        <form th:action="@{'/serviciosHotel/editar/' + ${servicio_hotel.id.getId()} + '/guardar'}" method="post">
+            <div class="form-group">
+                <label for="nombre_servicio">Nombre del Servicio:</label>
+                <input type="text" class="form-control" id="nombre_servicio" name="nombre_servicio" placeholder="Nombre del Servicio" required th:value="${servicio_hotel.nombre_servicio}">
+
+                <label for="disponible">Disponible</label>
+                <select class="form-control" id="disponible" name="disponible" required>
+                    <option value=true th:selected="${servicio_hotel.disponible eq true}">SI</option>
+                    <option value=false th:selected="${servicio_hotel.disponible eq false}">NO</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>

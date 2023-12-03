@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Servicios del Hotel</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Servicios del Hotel</h1>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre del Servicio</th>
+                    <th>Disponible</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="servicio : ${servicios_hotel}">
+                    <td th:text="${servicio.id}">ID</td>
+                    <td th:text="${servicio.nombre_servicio}">Nombre del Servicio</td>
+                    <td th:text="${servicio.disponible}">Disponible</td>
+                    <td>      
+                        <a th:href="@{/serviciosHotel/editar/{id}(id=${servicio.id})}"  class="btn btn-info" >Editar</a>        
+                        <a th:href="@{/serviciosHotel/eliminar/{id}(id=${servicio.id})}" class="btn btn-danger"
+                        onclick="return confirm('¿Estás seguro de borrar este servicio?')">Borrar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-success" th:href="@{/serviciosHotel/nuevo}">Crear Nuevo Servicio</a>
+    </div>
+</body>
+</html>

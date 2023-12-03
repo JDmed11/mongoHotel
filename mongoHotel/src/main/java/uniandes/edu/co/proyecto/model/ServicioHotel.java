@@ -1,22 +1,34 @@
 package uniandes.edu.co.proyecto.model;
 
-import org.bson.types.ObjectId;
+import java.util.List;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import jakarta.persistence.Id;
+
 
 @Document(collection = "servicios_hotel")
 public class ServicioHotel {
     
     @Id
-    private ObjectId _id;
+    private String id;
     private String nombre_servicio;
+    private boolean disponible;
 
-    public ServicioHotel(String nombre_servicio) {
+    public ServicioHotel(String nombre_servicio, boolean disponible) {
         this.nombre_servicio = nombre_servicio;
+        this.disponible = disponible;
     }
 
     public ServicioHotel() {;}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getNombre_servicio() {
         return nombre_servicio;
@@ -24,6 +36,14 @@ public class ServicioHotel {
 
     public void setNombre_servicio(String nombre_servicio) {
         this.nombre_servicio = nombre_servicio;
+    }
+
+    public boolean getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(boolean disponible) {
+        this.disponible = disponible;
     }
 
     @Override
@@ -48,12 +68,14 @@ public class ServicioHotel {
                 return false;
         } else if (!nombre_servicio.equals(other.nombre_servicio))
             return false;
+        if (disponible != other.disponible)
+            return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "ServicioHotel [nombre_servicio=" + nombre_servicio + "]";
+        return "ServicioHotel [nombre_servicio=" + nombre_servicio + ", disponible=" + disponible + "]";
     }
 
     
