@@ -20,12 +20,13 @@
                     <td th:text="${habitacion.numero_habitacion}"></td>
                     <td>
                         <a class="btn btn-info" th:href="@{/habitaciones/editar/{numero_habitacion}(numero_habitacion=${habitacion.numero_habitacion})}">Editar</a>
-                        <a class="btn btn-danger" th:href="@{/habitaciones/eliminar/{numero_habitacion}(numero_habitacion=${habitacion.numero_habitacion})}">Eliminar</a>
+                        <a class="btn btn-danger" th:href="@{/tiposHabitacion/habitaciones/{id}/{numero_habitacion}/eliminar(id=${tipo_habitacion.id}, numero_habitacion=${habitacion.numero_habitacion})}">Eliminar</a>
+
                     </td>
                 </tr>
             </tbody>
         </table>
-        <a class="btn btn-success" th:href="@{/habitaciones/nuevo}">Crear Nueva habitacion</a>
+        <a class="btn btn-success" th:href="@{/tiposHabitacion/habitaciones/{id}/nuevo(id=${tipo_habitacion.id})}">Crear Nueva habitacion</a>
         <a class="btn btn-danger" th:href="@{/adminDb}">Regresar</a>
     </div>
 </body>

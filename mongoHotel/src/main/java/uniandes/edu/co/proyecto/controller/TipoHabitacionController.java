@@ -58,6 +58,30 @@ public class TipoHabitacionController {
     }
 
     /**
+     * Devuelve el formulario para editar un tipo de habitacion
+     * @param id id del tipo de habitacion a editar
+     * @param model modelo utilizado por la vista
+     * @return formulario para editar un tipo de habitacion
+     */
+    @GetMapping("/tiposHabitacion/editar/{id}")
+    public String edit(@PathVariable("id") String id, Model model) {
+        model.addAttribute("tipo_habitacion", tipoHabitacionRepository.findById(id).get());
+        return "TiposHabitacion/editar";
+    }
+
+    /**
+     * Guarda los cambios realizados a un tipo de habitacion
+     * @param id id del tipo de habitacion a editar
+     * @param tipoHabitacion tipo de habitacion editado
+     * @return redireccion a la lista de tipos de habitacion
+     */
+    @PostMapping("/tiposHabitacion/editar/{id}/guardar")
+    public String update(@PathVariable("id") String id, TipoHabitacion tipoHabitacion) {
+        tipoHabitacionRepository.save(tipoHabitacion);
+        return "redirect:/tiposHabitacion";
+    }
+
+    /**
      * Elimina un tipo de habitacion
      * @param id id del tipo de habitacion a eliminar
      * @return redireccion a la lista de tipos de habitacion
@@ -70,8 +94,59 @@ public class TipoHabitacionController {
 
     @GetMapping("/tiposHabitacion/habitaciones/{id}")
     public String getHabitaciones(@PathVariable("id") String id, Model model) {
+        model.addAttribute("tipo_habitacion", tipoHabitacionRepository.findById(id).get());
         model.addAttribute("habitaciones", tipoHabitacionRepository.findById(id).get().getHabitaciones_asociadas());
         model.getAttribute("habitaciones");
         return "TiposHabitacion/habitaciones";
+    }
+
+    /**
+     * Elimina una habitacion de un tipo de habitacion
+     * @param id id del tipo de habitacion
+     * @param numero_habitacion numero de la habitacion a eliminar
+     * @return redireccion a la lista de habitaciones de un tipo de habitacion
+     */
+    @GetMapping("/tiposHabitacion/habitaciones/{id}/{numero_habitacion}/eliminar")
+    public String deleteHabitacion(@PathVariable("id") String id, @PathVariable("numero_habitacion") int numero_habitacion) {
+        TipoHabitacion tipoHabitacion = tipoHabitacionRepository.findById(id).get();
+        List<Habitacion> habitaciones = tipoHabitacion.getHabitaciones_asociadas();
+        for (int i = 0; i < habitaciones.size(); i++) {
+            if (habitaciones.get(i).getNumero_habitacion() == numero_habitacion) {
+                habitaciones.remove(i);
+                break;
+            }
+        }
+        tipoHabitacion.setHabitaciones_asociadas(habitaciones);
+        tipoHabitacionRepository.save(tipoHabitacion);
+        return "redirect:/tiposHabitacion/habitaciones/" + id;
+    }
+
+    /**
+     * Devuelve el formulario para crear una habitacion de un tipo de habitacion
+     * @param id id del tipo de habitacion
+     * @param model modelo utilizado por la vista
+     * @return formulario para crear una habitacion de un tipo de habitacion
+     */
+    @GetMapping("/tiposHabitacion/habitaciones/{id}/nuevo")
+    public String createHabitacion(@PathVariable("id") String id, Model model) {
+        model.addAttribute("tipo_habitacion", tipoHabitacionRepository.findById(id).get());
+        model.addAttribute("habitacion", new Habitacion());
+        return "TiposHabitacion/nuevaHabitacion";
+    }
+
+    /**
+     * Guarda una nueva habitacion de un tipo de habitacion
+     * @param id id del tipo de habitacion
+     * @param habitacion habitacion a guardar
+     * @return redireccion a la lista de habitaciones de un tipo de habitacion
+     */
+    @PostMapping("/tiposHabitacion/habitaciones/{id}/nuevo/guardar")
+    public String saveHabitacion(@PathVariable("id") String id, Habitacion habitacion) {
+        TipoHabitacion tipoHabitacion = tipoHabitacionRepository.findById(id).get();
+        List<Habitacion> habitaciones = tipoHabitacion.getHabitaciones_asociadas();
+        habitaciones.add(habitacion);
+        tipoHabitacion.setHabitaciones_asociadas(habitaciones);
+        tipoHabitacionRepository.save(tipoHabitacion);
+        return "redirect:/tiposHabitacion/habitaciones/" + id;
     }
 }

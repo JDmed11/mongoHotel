@@ -1,6 +1,5 @@
 package uniandes.edu.co.proyecto.controller;
 
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -85,8 +84,7 @@ public class ServicioHotelController {
      * @return redireccion a la lista de servicios de hotel
      */
     @PostMapping("/serviciosHotel/editar/{id}/guardar")
-    public String saveEdit(@PathVariable("id") ObjectId id, ServicioHotel servicioHotel) {
-        servicioHotel.setId(id.toHexString());
+    public String saveEdit(@PathVariable("id") String id, ServicioHotel servicioHotel) {
         servicioHotelRepository.save(servicioHotel);
         return "redirect:/serviciosHotel";
     }
