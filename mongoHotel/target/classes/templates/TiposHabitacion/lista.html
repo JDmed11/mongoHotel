@@ -33,7 +33,8 @@
                         <a th:href="@{/tiposHabitacion/editar/{id}(id=${tipo_habitacion.id})}"  class="btn btn-info" >Editar</a>
                         <a th:href="@{/tiposHabitacion/eliminar/{id}(id=${tipo_habitacion.id})}" class="btn btn-danger"
                         onclick="return confirm('¿Estás seguro de borrar este tipo de habitacion?')">Borrar</a>
-                        <a href="@{/habitaciones}" class="btn btn-success">Habitaciones asociadas</a>
+
+                        <a href="@{/tiposHabitacion/habitaciones/{id}(id=${tipo_habitacion.id})}" class="btn btn-success">Habitaciones asociadas</a>
                     </td>
                 </tr>
             </tbody>

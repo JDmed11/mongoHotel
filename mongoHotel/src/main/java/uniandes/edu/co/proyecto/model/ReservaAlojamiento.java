@@ -4,8 +4,8 @@ import java.util.Date;
 
 import java.util.List;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.Id;
 import uniandes.edu.co.proyecto.model.enumeraciones.EstadoReserva;
@@ -14,8 +14,10 @@ import uniandes.edu.co.proyecto.model.enumeraciones.EstadoReserva;
 public class ReservaAlojamiento {
  
     @Id
-    private ObjectId _id;
+    private String id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_entrada;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_salida;
     private String cedula_cliente;
     private int numero_acompaniantes;
@@ -36,6 +38,14 @@ public class ReservaAlojamiento {
     }
 
     public ReservaAlojamiento() {;}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Date getFecha_entrada() {
         return fecha_entrada;

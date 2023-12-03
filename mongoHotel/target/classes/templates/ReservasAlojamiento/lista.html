@@ -13,13 +13,11 @@
                     <th>ID</th>
                     <th>Fecha de entrada</th>
                     <th>Fecha de salida</th>
+                    <th>Cedula cliente</th>
                     <th>Acompaniantes</th>
-                    <th>Estado</th>
-                    <th>Habitacion</th>
-                    <th>Plan de consumo</th>
-                    <th>Cliente</th>
-                    <th>Nombre cliente</th>
-                    <th>Saldo</th>
+                    <th>Habitacion asociada</th>
+                    <th>Estado de reserva</th>
+                    <th>Saldo actual</th>
                     <th>Acciones</th>
 
                 </tr>
@@ -30,13 +28,11 @@
                     <td th:text="${reserva.id}"></td>
                     <td th:text="${reserva.fecha_entrada}"></td>
                     <td th:text="${reserva.fecha_salida}"></td>
-                    <td th:text="${reserva.acompaniantes}"></td>
-                    <td th:text="${reserva.estado}"></td>
-                    <td th:text="${reserva.habitacion.numero_habitacion}"></td>
-                    <td th:text="${reserva.plan_consumo.nombre}"></td>
-                    <td th:text="${reserva.cliente.numeroDocumento}"></td>
-                    <td th:text="${reserva.cliente.nombre}"></td>
-                    <td th:text="${reserva.saldo}"></td>
+                    <td th:text="${reserva.cedula_cliente}"></td>
+                    <td th:text="${reserva.numero_acompaniantes}"></td>
+                    <td th:text="${reserva.habitacion_asociada.numero_habitacion}"></td>
+                    <td th:text="${reserva.estado_reserva}"></td>
+                    <td th:text="${reserva.saldo_actual}"></td>
                     <td>
                         <a th:href="@{/reservasAlojamiento/editar/{id}(id=${reserva.id})}"  class="btn btn-info" >Editar</a>
                         <a th:href="@{/reservasAlojamiento/eliminar/{id}(id=${reserva.id})}" class="btn btn-danger"
