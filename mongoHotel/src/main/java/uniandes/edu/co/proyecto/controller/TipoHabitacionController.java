@@ -67,4 +67,10 @@ public class TipoHabitacionController {
         tipoHabitacionRepository.deleteById(id);
         return "redirect:/tiposHabitacion";
     }
+
+    @GetMapping("/tiposHabitacion/habitaciones/{id}")
+    public String getHabitaciones(@PathVariable("id") String id, Model model) {
+        model.addAttribute("habitaciones", tipoHabitacionRepository.findByTipo(id));
+        return "TiposHabitacion/habitaciones";
+    }
 }

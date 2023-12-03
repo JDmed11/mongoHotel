@@ -41,6 +41,5 @@ public class ReservaAlojamientoController {
     public String delete(@PathVariable("id") String id){
         reservaAlojamientoRepository.deleteById(id);
         return "redirect:/reservasAlojamiento";
-       
     }
 }
