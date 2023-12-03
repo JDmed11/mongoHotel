@@ -66,10 +66,26 @@ public class ServicioHotelController {
      * @param model modelo utilizado por la vista
      * @return formulario para editar un servicio de hotel
      */
-    @GetMapping("/serviciosHotel/editar/{id}")
-    public String edit(@PathVariable("id") String id, Model model) {
-        model.addAttribute("servicio_hotel", servicioHotelRepository.findById(id));
-        return "ServicioHotel/editar";
+    @GetMapping("/serviciosHotel/editar/{id_servicio}")
+    public String edit(@PathVariable("id_servicio") String id, Model model) throws Exception{
+        var servicioHotel = servicioHotelRepository.findById(id);
+        if (servicioHotel.isPresent()){
+            model.addAttribute("servicio_hotel", servicioHotel.get());
+            return "ServicioHotel/editar";
+        }
+        throw new Exception("No hay un servicio de hotel con ese id");
+        
     }
     
+    /**
+     * Guarda un servicio de hotel editado
+     * @param id id del servicio de hotel a editar
+     * @param servicioHotel servicio de hotel editado
+     * @return redireccion a la lista de servicios de hotel
+     */
+    @PostMapping("/serviciosHotel/editar/{id}/guardar")
+    public String saveEdit(@PathVariable("id") String id, ServicioHotel servicioHotel) {
+        servicioHotelRepository.save(servicioHotel);
+        return "redirect:/serviciosHotel";
+    }
 }
