@@ -17,32 +17,24 @@
                 <label for="fecha_salida">Fecha de salida</label>
                 <input type="date" class="form-control" id="fecha_salida" name="fecha_salida" placeholder="Fecha de salida" required th:value="${reserva.fecha_salida}" >
                 
-                <label for="acompaniantes">Acompaniantes</label>
-                <input type="number" class="form-control" id="acompaniantes" name="acompaniantes" placeholder="Acompaniantes" required th:value="${reserva.acompaniantes}" >
+                <label for="cedula_cliente">Cedula del cliente</label>
+                <input type="number" class="form-control" id="cedula_cliente" name="cedula_cliente" placeholder="Cedula del cliente" required th:value="${reserva.cedula_cliente}" >
 
-                <label for="estado">Estado</label>
-                <select class="form-control" id="estado" name="estado" required>
-                    <option value="activa">Activa</option>
-                    <option value="finalizada">Finalizada</option>
-                    <option value="reservada">Reservada</option>
+                <label for="numero_acompaniantes">Numero de acompaniantes</label>
+                <input type="number" class="form-control" id="numero_acompaniantes" name="numero_acompaniantes" placeholder="Numero de acompaniantes" required th:value="${reserva.numero_acompaniantes}" >
+
+                <label for="habitacion_asociada">Habitacion asociada</label>
+                <input type="number" class="form-control" id="habitacion_asociada" name="habitacion_asociada" placeholder="Habitacion asociada" required th:value="${reserva.habitacion_asociada}" >
+
+                <label for="estado_reserva">Estado de la reserva</label>
+                <select class="form-control" id="estado_reserva" name="estado_reserva" required>
+                    <option value="RESERVADA" th:selected="${reserva.estado_reserva eq 'RESERVADA'}">RESERVADA</option>
+                    <option value="ACTIVA" th:selected="${reserva.estado_reserva eq 'ACTIVA'}">ACTIVA</option>
+                    <option value="FINALIZADA" th:selected="${reserva.estado_reserva eq 'FINALIZADA'}">FINALIZADA</option>
                 </select>
 
-                <label for="habitacion">Habitacion</label>
-                <select class="form-control" id="habitacion" name="habitacion" required>
-                    <th:block th:each="habitacion : ${habitaciones}" >
-                        <option th:value="${habitacion.numero_habitacion}" th:text="${habitacion.numero_habitacion}" th:selected="${habitacion!=null || reserva.numero_habitacion == habitacion.numero_habitacion}"></option>
-                    </th:block>
-                </select>
-
-                <label for="plan_consumo">Plan de consumo</label>
-                <select class="form-control" id="plan_consumo" name="plan_consumo" required>
-                    <th:block th:each="planConsumo : ${planesConsumo}" >
-                        <option th:value="${planConsumo.id}" th:text="${planConsumo.nombre}" th:selected="${planConsumo!=null || reserva.plan_consumo.id == planConsumo.id}"></option>
-                    </th:block>
-                </select>
-
-                <label for="saldo">Saldo</label>
-                <input type="number" class="form-control" id="saldo" name="saldo" placeholder="Saldo" required th:value="${reserva.saldo}" >
+                <label for="saldo_actual">Saldo actual</label>
+                <input type="number" class="form-control" id="saldo_actual" name="saldo_actual" placeholder="Saldo actual" required th:value="${reserva.saldo_actual}" >
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>

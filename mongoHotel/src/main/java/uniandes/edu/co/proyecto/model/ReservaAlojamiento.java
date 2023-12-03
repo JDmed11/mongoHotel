@@ -21,13 +21,13 @@ public class ReservaAlojamiento {
     private Date fecha_salida;
     private String cedula_cliente;
     private int numero_acompaniantes;
-    private Habitacion habitacion_asociada;
+    private int habitacion_asociada;
     private EstadoReserva estado_reserva;
     private double saldo_actual;
     private List<ConsumoServicio> consumos_servicio;
 
     public ReservaAlojamiento(Date fecha_entrada, Date fecha_salida, String cedula_cliente, int numero_acompaniantes,
-            Habitacion habitacion_asociada, EstadoReserva estado_reserva, double saldo_actual) {
+            int habitacion_asociada, EstadoReserva estado_reserva, double saldo_actual) {
         this.fecha_entrada = fecha_entrada;
         this.fecha_salida = fecha_salida;
         this.cedula_cliente = cedula_cliente;
@@ -79,11 +79,11 @@ public class ReservaAlojamiento {
         this.numero_acompaniantes = numero_acompaniantes;
     }
 
-    public Habitacion getHabitacion_asociada() {
+    public int getHabitacion_asociada() {
         return habitacion_asociada;
     }
 
-    public void setHabitacion_asociada(Habitacion habitacion_asociada) {
+    public void setHabitacion_asociada(int habitacion_asociada) {
         this.habitacion_asociada = habitacion_asociada;
     }
 
@@ -115,11 +115,12 @@ public class ReservaAlojamiento {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((fecha_entrada == null) ? 0 : fecha_entrada.hashCode());
         result = prime * result + ((fecha_salida == null) ? 0 : fecha_salida.hashCode());
         result = prime * result + ((cedula_cliente == null) ? 0 : cedula_cliente.hashCode());
         result = prime * result + numero_acompaniantes;
-        result = prime * result + ((habitacion_asociada == null) ? 0 : habitacion_asociada.hashCode());
+        result = prime * result + habitacion_asociada;
         result = prime * result + ((estado_reserva == null) ? 0 : estado_reserva.hashCode());
         long temp;
         temp = Double.doubleToLongBits(saldo_actual);
@@ -137,6 +138,11 @@ public class ReservaAlojamiento {
         if (getClass() != obj.getClass())
             return false;
         ReservaAlojamiento other = (ReservaAlojamiento) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
         if (fecha_entrada == null) {
             if (other.fecha_entrada != null)
                 return false;
@@ -154,10 +160,7 @@ public class ReservaAlojamiento {
             return false;
         if (numero_acompaniantes != other.numero_acompaniantes)
             return false;
-        if (habitacion_asociada == null) {
-            if (other.habitacion_asociada != null)
-                return false;
-        } else if (!habitacion_asociada.equals(other.habitacion_asociada))
+        if (habitacion_asociada != other.habitacion_asociada)
             return false;
         if (estado_reserva != other.estado_reserva)
             return false;
