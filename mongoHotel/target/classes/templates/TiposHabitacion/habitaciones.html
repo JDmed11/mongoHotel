@@ -19,7 +19,7 @@
                 <tr th:each="habitacion : ${habitaciones}">
                     <td th:text="${habitacion.numero_habitacion}"></td>
                     <td>
-                        <a class="btn btn-info" th:href="@{/habitaciones/editar/{numero_habitacion}(numero_habitacion=${habitacion.numero_habitacion})}">Editar</a>
+                        <a class="btn btn-info" th:href="@{/tiposHabitacion/habitaciones/{id}/{numero_habitacion}/editar(numero_habitacion=${habitacion.numero_habitacion}, id=${tipo_habitacion.id})}">Editar</a>
                         <a class="btn btn-danger" th:href="@{/tiposHabitacion/habitaciones/{id}/{numero_habitacion}/eliminar(id=${tipo_habitacion.id}, numero_habitacion=${habitacion.numero_habitacion})}">Eliminar</a>
 
                     </td>

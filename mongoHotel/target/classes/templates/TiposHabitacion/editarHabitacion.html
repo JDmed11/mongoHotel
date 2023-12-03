@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario habitacion</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Formulario para editar una habitacion</h1>
+        <form th:action="@{'/tiposHabitacion/habitaciones/' + {tipo_habitacion.id} + '/' + {habitacion.numero_habitacion} + '/editar'}" method="post" th:with="tipo_habitacion=${tipo_habitacion}, habitacion=${habitacion}">
+            <div class="form-group">
+                <label class="col-form-label" for="numero_habitacion">Numero de la habitacion</label>
+                <input class="form-control" type="number" id="numero_habitacion" name="numero_habitacion" required th:value="${habitacion.numero_habitacion}"/>
+        
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+    </div>
+</body>
+</html>
