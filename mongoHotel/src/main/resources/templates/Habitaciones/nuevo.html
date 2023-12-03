@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <h1>Formulario para crear una habitacion</h1>
-        <form th:action="@{/habitaciones/nuevo/guardar}" method="post">
+        <form th:action="@{/tiposHabitacion/habitaciones/{id}/nuevo/guardar}(id=${tipo_habitacion.id})" method="post">
             <div class="form-group">
                 <label class="col-form-label" for="numero_habitacion">Numero de la habitacion</label>
                 <input class="form-control" type="number" id="numero_habitacion" name="numero_habitacion" required th:value="${habitacion.numero_habitacion}"/>
