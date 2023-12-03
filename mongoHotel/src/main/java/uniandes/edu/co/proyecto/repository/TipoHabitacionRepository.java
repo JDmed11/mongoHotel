@@ -19,7 +19,4 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 @Repository
 public interface TipoHabitacionRepository extends MongoRepository<TipoHabitacion, String> {
 
-    @Query(value = "{ 'nombre' : ?0 }")
-    public List<TipoHabitacion> unwindRooms();
-
 }

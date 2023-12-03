@@ -70,7 +70,8 @@ public class TipoHabitacionController {
 
     @GetMapping("/tiposHabitacion/habitaciones/{id}")
     public String getHabitaciones(@PathVariable("id") String id, Model model) {
-        model.addAttribute("habitaciones", tipoHabitacionRepository.findByTipo(id));
+        model.addAttribute("habitaciones", tipoHabitacionRepository.findById(id).get().getHabitaciones_asociadas());
+        model.getAttribute("habitaciones");
         return "TiposHabitacion/habitaciones";
     }
 }
